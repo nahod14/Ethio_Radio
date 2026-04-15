@@ -4,7 +4,7 @@
 This is a **cross-platform mobile app** targeting Android and iOS, built with **React Native + Expo**.
 
 - **Workspace**: myprojectspace
-- **Linear Team**: My App (`ea44c753-fb73-4639-ab07-bef9ed516768`)
+- **Linear Team**: Ethio Radio (`ea44c753-fb73-4639-ab07-bef9ed516768`)
 - **Linear MCP**: `https://mcp.linear.app/mcp`
 - **Platform Targets**: Android (API 26+) and iOS (16+)
 
@@ -30,14 +30,10 @@ This is a **cross-platform mobile app** targeting Android and iOS, built with **
 
 ```
 src/
-  components/     # Reusable UI components
-  screens/        # Full screen views
-  hooks/          # Custom hooks
-  store/          # Zustand stores
-  navigation/     # Navigation config (if not using file-based routing)
-  services/       # API calls, external integrations
-  utils/          # Pure utility functions
+  features/radio/ # Radio streaming feature (screen, hooks, service, utils, store, types)
+  store/          # Global Zustand stores
   assets/         # Images, fonts, icons
+app/              # Expo Router file-based routes
 ```
 
 ---
@@ -55,7 +51,7 @@ src/
 
 ## Linear Integration
 
-Issues are tracked in **Linear** under the **My App** team. When working on a feature:
+Issues are tracked in **Linear** under the **Ethio Radio** team. When working on a feature:
 1. Reference the Linear issue ID in branch names: `feat/MY-XX-short-description`
 2. Reference issue IDs in commit messages: `feat(MY-XX): implement login screen`
 3. Claude can create/update Linear issues directly via the connected MCP server.

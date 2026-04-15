@@ -1,6 +1,6 @@
-# My App
+# Ethio Radio
 
-Cross-platform mobile app for Android & iOS — built with React Native + Expo.
+Cross-platform mobile app for Android & iOS — Ethiopian radio streaming, built with React Native + Expo.
 
 ## Quick Start
 
@@ -25,7 +25,7 @@ Press `a` for Android emulator, `i` for iOS simulator.
 ## Linear Project
 
 Issues tracked at: [linear.app/myprojectspace](https://linear.app/myprojectspace)  
-Team: **My App**
+Team: **Ethio Radio**
 
 Branch format: `feat/MY-{id}-{description}`  
 Commit format: `feat(MY-{id}): description`
@@ -44,12 +44,8 @@ Commit format: `feat(MY-{id}): description`
 
 ```
 src/
-  components/   # Reusable UI
-  screens/      # Full screens
-  hooks/        # Custom hooks
-  store/        # Zustand stores
-  services/     # API & data layer
-  utils/        # Helpers
-  assets/       # Images, fonts
-app/            # Expo Router file-based routes
+  features/radio/   # Radio streaming feature (screen, store, hooks, utils)
+  store/            # Global Zustand stores
+  assets/           # Images, icons
+app/                # Expo Router file-based routes
 ```
