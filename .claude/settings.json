@@ -1,0 +1,65 @@
+{
+  "project": {
+    "name": "My App",
+    "type": "mobile",
+    "platforms": ["android", "ios"],
+    "framework": "react-native-expo",
+    "language": "typescript",
+    "linearTeam": "My App",
+    "linearWorkspace": "myprojectspace",
+    "linearTeamId": "ea44c753-fb73-4639-ab07-bef9ed516768"
+  },
+
+  "contextFiles": [
+    "CLAUDE.md",
+    "SKILLS.md",
+    "BLUNT.md",
+    "permissions.md"
+  ],
+
+  "permissions": {
+    "allow": [
+      "read_files",
+      "write_files",
+      "run_terminal_commands",
+      "create_linear_issues",
+      "update_linear_issues",
+      "list_linear_issues",
+      "create_linear_comments",
+      "update_linear_status",
+      "create_linear_milestones",
+      "create_linear_documents"
+    ],
+    "deny": [
+      "delete_linear_issues",
+      "delete_linear_projects",
+      "modify_linear_team_settings",
+      "commit_to_main_branch",
+      "force_push",
+      "publish_to_app_stores"
+    ]
+  },
+
+  "linearDefaults": {
+    "team": "My App",
+    "defaultStatus": "Todo",
+    "branchFormat": "feat/MY-{id}-{slug}",
+    "commitFormat": "feat(MY-{id}): {description}",
+    "labels": {
+      "feature": "feature",
+      "bug": "bug",
+      "chore": "chore",
+      "android": "platform:android",
+      "ios": "platform:ios"
+    }
+  },
+
+  "codeStyle": {
+    "typescript": "strict",
+    "noAny": true,
+    "noConsoleLog": true,
+    "componentStyle": "functional",
+    "stylingApproach": "nativewind",
+    "testFramework": "jest"
+  }
+}

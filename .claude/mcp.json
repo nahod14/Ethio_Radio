@@ -1,0 +1,95 @@
+{
+  "mcpServers": {
+
+    "linear": {
+      "type": "url",
+      "url": "https://mcp.linear.app/mcp",
+      "name": "linear",
+      "description": "Linear project management — read/write issues, projects, milestones, labels, and statuses for the My App team (workspace: myprojectspace)",
+      "capabilities": [
+        "list_issues", "get_issue", "save_issue", "list_projects", "get_project",
+        "save_project", "list_milestones", "save_milestone", "list_teams", "get_team",
+        "list_issue_statuses", "list_issue_labels", "list_users", "get_user",
+        "save_comment", "list_comments", "list_documents", "get_document",
+        "create_document", "update_document", "list_cycles", "search_documentation"
+      ]
+    },
+
+    "google-drive": {
+      "type": "url",
+      "url": "https://mcp.googleapis.com/drive",
+      "name": "google-drive",
+      "description": "Google Drive, Sheets, and Docs — read/write files, spreadsheets, and documents.",
+      "setup": {
+        "method": "oauth",
+        "connect_at": "https://claude.ai/settings/integrations",
+        "scopes": [
+          "https://www.googleapis.com/auth/drive.readonly",
+          "https://www.googleapis.com/auth/documents",
+          "https://www.googleapis.com/auth/spreadsheets"
+        ]
+      },
+      "capabilities": [
+        "gdrive_search", "gdrive_fetch", "gdrive_list", "gdrive_read_doc", "gdrive_read_sheet"
+      ],
+      "use_cases": [
+        "Read design specs or PRDs from Google Docs",
+        "Pull data from Google Sheets (e.g. content, config, test cases)",
+        "Search Drive for existing documents before creating new ones"
+      ]
+    },
+
+    "github": {
+      "type": "stdio",
+      "name": "github",
+      "description": "GitHub — read/write repos, issues, PRs, branches, and code. Requires Claude Desktop or Claude Code.",
+      "setup": {
+        "method": "local_stdio",
+        "requires": "Claude Desktop or Claude Code (not claude.ai web)",
+        "install_steps": [
+          "1. Get a GitHub PAT at https://github.com/settings/tokens/new (scopes: repo, read:org, read:user)",
+          "2. Add the block below to your Claude Desktop config",
+          "   macOS: ~/Library/Application Support/Claude/claude_desktop_config.json",
+          "   Windows: %APPDATA%/Claude/claude_desktop_config.json"
+        ],
+        "claude_desktop_config_snippet": {
+          "mcpServers": {
+            "github": {
+              "command": "npx",
+              "args": ["-y", "@modelcontextprotocol/server-github"],
+              "env": {
+                "GITHUB_PERSONAL_ACCESS_TOKEN": "your_github_pat_here"
+              }
+            }
+          }
+        }
+      },
+      "capabilities": [
+        "create_or_update_file", "search_repositories", "create_repository",
+        "get_file_contents", "push_files", "create_issue", "create_pull_request",
+        "list_branches", "create_branch", "search_code", "get_commit", "list_commits"
+      ],
+      "use_cases": [
+        "Create branches matching Linear issue IDs (feat/MY-XX-...)",
+        "Open PRs and link back to Linear issues",
+        "Search codebase for context before making changes"
+      ]
+    }
+
+  },
+
+  "_readme": {
+    "purpose": "MCP server config for Claude Code / Claude Desktop / AI-powered tooling",
+    "team": "My App",
+    "workspace": "myprojectspace",
+    "linear_team_id": "ea44c753-fb73-4639-ab07-bef9ed516768",
+    "server_status": {
+      "linear": "✅ Connected via Claude.ai",
+      "google-drive": "⚠️  Connect at claude.ai/settings/integrations (OAuth)",
+      "github": "⚠️  Requires Claude Desktop or Claude Code (local stdio)"
+    },
+    "planned_servers": [
+      { "name": "expo", "url": "TBD", "status": "add when EAS is configured" }
+    ]
+  }
+}
