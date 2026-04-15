@@ -1,3 +1,4 @@
+import { Ionicons } from '@expo/vector-icons';
 import {
   ActivityIndicator,
   Image,
@@ -181,11 +182,16 @@ export function EthiopianRadioScreen() {
             {sleepTimerMinutes > 0 ? formatSleepTimer(sleepRemainingSeconds) : 'ZZZ'}
           </Text>
         </Pressable>
-        <Pressable
-          onPress={() => void togglePlayback()}
-          style={[styles.playerButton, isPlaying ? styles.playerButtonPlaying : undefined]}
-        >
-          <Text style={styles.playerButtonLabel}>{playerButtonLabel(playbackPhase)}</Text>
+        <Pressable onPress={() => void togglePlayback()} style={styles.playerButton}>
+          {playbackPhase === 'loading' ? (
+            <ActivityIndicator color="#D4A843" size="large" />
+          ) : (
+            <Ionicons
+              color={isPlaying ? '#078930' : '#D4A843'}
+              name={isPlaying ? 'pause-circle' : 'play-circle'}
+              size={56}
+            />
+          )}
         </Pressable>
       </View>
     </SafeAreaView>
@@ -344,18 +350,6 @@ function playbackLabel(playbackPhase: PlaybackPhase): string {
     default:
       return 'Ready';
   }
-}
-
-function playerButtonLabel(playbackPhase: PlaybackPhase): string {
-  if (playbackPhase === 'loading') {
-    return '...';
-  }
-
-  if (playbackPhase === 'playing') {
-    return 'Pause';
-  }
-
-  return 'Play';
 }
 
 const styles = StyleSheet.create({
@@ -555,19 +549,8 @@ const styles = StyleSheet.create({
   },
   playerButton: {
     alignItems: 'center',
-    backgroundColor: '#D4A843',
-    borderRadius: 999,
-    minWidth: 88,
-    paddingHorizontal: 22,
-    paddingVertical: 16,
-  },
-  playerButtonLabel: {
-    color: '#0F1520',
-    fontSize: 15,
-    fontWeight: '800',
-  },
-  playerButtonPlaying: {
-    backgroundColor: '#078930',
+    justifyContent: 'center',
+    padding: 4,
   },
   playerMeta: {
     flex: 1,
