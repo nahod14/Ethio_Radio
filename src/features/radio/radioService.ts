@@ -71,12 +71,9 @@ export async function fetchEthiopianStations(): Promise<{
   featuredStations: RadioStation[];
   stations: RadioStation[];
 }> {
-  const [byName, byCode, byLanguage] = await Promise.allSettled([
+  const [byName, byLanguage] = await Promise.allSettled([
     queryMirrors(
       '/json/stations/search?country=Ethiopia&hidebroken=true&order=votes&reverse=true&limit=80',
-    ),
-    queryMirrors(
-      '/json/stations/bycountrycodeexact/ET?hidebroken=true&order=votes&reverse=true&limit=40',
     ),
     queryMirrors(
       '/json/stations/search?language=amharic&hidebroken=true&order=votes&reverse=true&limit=40',
@@ -86,7 +83,6 @@ export async function fetchEthiopianStations(): Promise<{
   const combined: RadioBrowserStation[] = [
     ...curatedEthiopianStations(),
     ...(byName.status === 'fulfilled' ? byName.value : []),
-    ...(byCode.status === 'fulfilled' ? byCode.value : []),
     ...(byLanguage.status === 'fulfilled' ? byLanguage.value : []),
   ];
 
@@ -96,11 +92,6 @@ export async function fetchEthiopianStations(): Promise<{
     if (byName.status === 'rejected') {
       errors.push(
         byName.reason instanceof Error ? byName.reason.message : 'Query by name failed',
-      );
-    }
-    if (byCode.status === 'rejected') {
-      errors.push(
-        byCode.reason instanceof Error ? byCode.reason.message : 'Query by code failed',
       );
     }
     if (byLanguage.status === 'rejected') {

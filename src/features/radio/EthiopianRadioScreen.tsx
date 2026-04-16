@@ -182,14 +182,15 @@ export function EthiopianRadioScreen() {
             {sleepTimerMinutes > 0 ? formatSleepTimer(sleepRemainingSeconds) : 'ZZZ'}
           </Text>
         </Pressable>
-        <Pressable
-          onPress={() => void togglePlayback()}
-          style={[styles.playerButton, isPlaying ? styles.playerButtonPlaying : undefined]}
-        >
+        <Pressable onPress={() => void togglePlayback()} style={styles.playerButton}>
           {playbackPhase === 'loading' ? (
-            <ActivityIndicator color="#0F1520" size="small" />
+            <ActivityIndicator color="#D4A843" size="large" />
           ) : (
-            <Ionicons color="#0F1520" name={isPlaying ? 'pause' : 'play'} size={26} />
+            <Ionicons
+              color={isPlaying ? '#078930' : '#D4A843'}
+              name={isPlaying ? 'pause-circle' : 'play-circle'}
+              size={56}
+            />
           )}
         </Pressable>
       </View>
@@ -548,14 +549,8 @@ const styles = StyleSheet.create({
   },
   playerButton: {
     alignItems: 'center',
-    backgroundColor: '#D4A843',
-    borderRadius: 999,
-    minWidth: 88,
-    paddingHorizontal: 22,
-    paddingVertical: 16,
-  },
-  playerButtonPlaying: {
-    backgroundColor: '#078930',
+    justifyContent: 'center',
+    padding: 4,
   },
   playerMeta: {
     flex: 1,
