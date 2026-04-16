@@ -1,3 +1,4 @@
+import { Ionicons } from '@expo/vector-icons';
 import {
   ActivityIndicator,
   Image,
@@ -185,7 +186,11 @@ export function EthiopianRadioScreen() {
           onPress={() => void togglePlayback()}
           style={[styles.playerButton, isPlaying ? styles.playerButtonPlaying : undefined]}
         >
-          <Text style={styles.playerButtonLabel}>{playerButtonLabel(playbackPhase)}</Text>
+          {playbackPhase === 'loading' ? (
+            <ActivityIndicator color="#0F1520" size="small" />
+          ) : (
+            <Ionicons color="#0F1520" name={isPlaying ? 'pause' : 'play'} size={26} />
+          )}
         </Pressable>
       </View>
     </SafeAreaView>
@@ -344,18 +349,6 @@ function playbackLabel(playbackPhase: PlaybackPhase): string {
     default:
       return 'Ready';
   }
-}
-
-function playerButtonLabel(playbackPhase: PlaybackPhase): string {
-  if (playbackPhase === 'loading') {
-    return '...';
-  }
-
-  if (playbackPhase === 'playing') {
-    return 'Pause';
-  }
-
-  return 'Play';
 }
 
 const styles = StyleSheet.create({
@@ -560,11 +553,6 @@ const styles = StyleSheet.create({
     minWidth: 88,
     paddingHorizontal: 22,
     paddingVertical: 16,
-  },
-  playerButtonLabel: {
-    color: '#0F1520',
-    fontSize: 15,
-    fontWeight: '800',
   },
   playerButtonPlaying: {
     backgroundColor: '#078930',
