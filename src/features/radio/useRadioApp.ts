@@ -45,6 +45,7 @@ export function useRadioApp() {
 
   useEffect(() => {
     void Audio.setAudioModeAsync({
+      allowsRecordingIOS: false,
       interruptionModeAndroid: InterruptionModeAndroid.DuckOthers,
       interruptionModeIOS: InterruptionModeIOS.DoNotMix,
       playsInSilentModeIOS: true,
